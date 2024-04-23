@@ -35,10 +35,13 @@ def test_register(test_client):
 
 
 def test_register_invalid_pass(user_client):
-    response = user_client.post(REGISTER_URL, json={
-        'email': 'dead@pool.com',
-        'password': '$',
-    })
+    response = user_client.post(
+        REGISTER_URL,
+        json={
+            'email': 'dead@pool.com',
+            'password': '$',
+        },
+    )
     assert response.status_code == 400, (
         'Проверьте статус ответа API: '
         'при регистрации пользователя некорректный POST-запрос '
