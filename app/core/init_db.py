@@ -1,4 +1,5 @@
 import contextlib
+import logging
 
 from fastapi_users.exceptions import UserAlreadyExists
 from pydantic import EmailStr
@@ -31,7 +32,7 @@ async def create_user(
                 )
             )
     except UserAlreadyExists:
-        pass
+        logging.exception(f'Суперпользователь {email} уже существует.')
 
 
 async def create_first_superuser():
